@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tetris</title>
+    <style>
+        body {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+
+        #score #speed {
+            display: inline-block;
+        }
+
+        div {
+            font-size: 25px;
+            font-weight: bold;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        canvas {
+            display:block;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body>
+    <canvas id="tetris" width="320" height="610"></canvas>
+    <div>
+        <p>
+            Score: <span id="score"></span>
+        </p>
+        <p>
+            Speed: <span id="speed"></span>
+        </p>
+    </div>
+    <script src="piece.js"></script>
+    <script src="skeletons.js"></script>
+    <script src="functions.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
