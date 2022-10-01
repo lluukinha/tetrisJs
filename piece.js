@@ -51,7 +51,7 @@ class Piece {
         if (this.collision(0, 0, nextPattern)) {
             kick = 1;
 
-            if (this.x > COL / 2) {
+            if (this.x > columnsCount / 2) {
                 kick = -1;
             }
         }
@@ -87,7 +87,7 @@ class Piece {
                 let newX = this.x + currentCol + x;
                 let newY = this.y + currentRow + y;
 
-                if (newX < 0 || newX >= COL || newY >= ROW) {
+                if (newX < 0 || newX >= columnsCount || newY >= rowsCount) {
                     return true;
                 }
 
@@ -107,24 +107,23 @@ class Piece {
         canMove = false;
         for (let currentRow = 0; currentRow < this.activePiece.length; currentRow++) {
             for (let currentCol = 0; currentCol < this.activePiece.length; currentCol++) {
-                if (!this.activePiece[currentRow][currentCol]) {
-                    continue;
-                }
+                if (!this.activePiece[currentRow][currentCol]) continue;
 
                 if (this.y + currentRow < 0) {
+                    console.log('bring game over');
                     gameOver();
-                    break;
+                    return;
                 }
 
                 board[this.y + currentRow][this.x + currentCol] = this.color;
             }
         }
 
-        for (let currentRow = 0; currentRow < ROW; currentRow++) {
+        for (let currentRow = 0; currentRow < rowsCount; currentRow++) {
 
             let isRowFull = true;
 
-            for (let currentCol = 0; currentCol < COL; currentCol++) {
+            for (let currentCol = 0; currentCol < columnsCount; currentCol++) {
                 const currentSquareColor = board[currentRow][currentCol];
                 isRowFull = isRowFull && (currentSquareColor !== defaultColor);
             }

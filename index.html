@@ -11,33 +11,65 @@
             color: #FFFFFF;
         }
 
-        #score #speed {
-            display: inline-block;
+        #tetris {
+            display:block;
         }
 
-        div {
+        .game {
+            width: 1270px;
+            height: 790px;
+            padding-left: 10px;
+            display: flex;
+            padding-top: 10px;
+        }
+
+        .sidebar {
+            margin-left: 5px;
+            width: 340px;
+            border: 1px dashed white;
+            height: 757px;
             font-size: 25px;
             font-weight: bold;
             font-family: monospace;
             text-align: center;
+            padding: 10px;
         }
 
-        canvas {
-            display:block;
-            margin: 0 auto;
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid white;
+            padding: 5px;
+        }
+
+        .sidebar-content > .title {
+            background-color: black;
+        }
+
+        .sidebar-content > .title, .sidebar-content > .sidebar-value {
+            padding: 5px 0px;
         }
     </style>
 
 </head>
 <body>
-    <canvas id="tetris" width="320" height="610"></canvas>
-    <div>
-        <p>
-            Score: <span id="score"></span>
-        </p>
-        <p>
-            Speed: <span id="speed"></span>
-        </p>
+    <div class="game">
+        <canvas id="tetris" width="880" height="780"></canvas>
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <span class="title">SCORE</span>
+                <span class="sidebar-value" id="score"></span>
+            </div>
+            <div class="sidebar-content">
+                <span class="title">SPEED</span>
+                <span class="sidebar-value" id="speed"></span>
+            </div>
+
+            <div class="best-score">
+                Best: <span>0</span> <i>(lucas)</i>
+            </div>
+        </div>
     </div>
     <script src="piece.js"></script>
     <script src="skeletons.js"></script>

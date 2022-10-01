@@ -1,6 +1,6 @@
-function drawBoard() {
-    for (let currentRow = 0; currentRow < ROW; currentRow++) {
-        for(let currentCol = 0; currentCol < COL; currentCol++) {
+const drawBoard = () => {
+    for (let currentRow = 0; currentRow < rowsCount; currentRow++) {
+        for(let currentCol = 0; currentCol < columnsCount; currentCol++) {
             const currentSquareColor = board[currentRow][currentCol];
             drawSquare(currentRow, currentCol, currentSquareColor);
         }
@@ -10,18 +10,18 @@ function drawBoard() {
     speedElement.innerHTML = speed;
 }
 
-function drawSquare(y, x, color) {
+const drawSquare = (y, x, color) => {
     ctx.fillStyle = color;
-    ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
+    ctx.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
 
     if (color == defaultColor) {
         ctx.strokeStyle = defaultBorder;
     }
 
-    ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
+    ctx.strokeRect(x * squareSize, y * squareSize, squareSize, squareSize);
 }
 
-function randomPiece() {
+const randomPiece = () => {
     const randomPieceNumber = Math.floor(Math.random() * PIECES.length);
     return new Piece(
         PIECES[randomPieceNumber][0],
@@ -29,23 +29,20 @@ function randomPiece() {
     );
 }
 
-function drop() {
+const drop = () => {
     const now = Date.now();
     const delta = now - dropStart;
 
-    if (delta > speed) {
+    if (delta > speed && canMove) {
         piece.moveDown();
         dropStart = Date.now();
     }
 
-    requestAnimationFrame(drop);
+    if (canMove) requestAnimationFrame(drop);
 }
 
-function CONTROL(event) {
-
-    if (!canMove) {
-        return false;
-    }
+const CONTROL = (event) => {
+    if (!canMove) return;
 
     const moveFunctions = {
         ArrowLeft() {
@@ -69,49 +66,50 @@ function CONTROL(event) {
     movePiece();
 }
 
-function updateRowAndScore(row) {
+const updateRowAndScore = (row) => {
     canMove = false;
 
     for (let y = row; y > 1; y--) {
-        for (let currentCol = 0; currentCol < COL; currentCol++) {
+        for (let currentCol = 0; currentCol < columnsCount; currentCol++) {
             removeRow(y, currentCol);
         }
     }
 
-    for (let currentCol = 0; currentCol < COL; currentCol++) {
+    for (let currentCol = 0; currentCol < columnsCount; currentCol++) {
         board[0][currentCol] = defaultColor;
     }
 
     score += 10;
 
-    if (speed > 100) {
-        speed -= 20;
-    }
+    if (speed > 100) speed -= 20;
 
     canMove = true;
 }
 
-function removeRow(rowToRemove, colToRemove) {
+const removeRow = (rowToRemove, colToRemove) => {
     board[rowToRemove][colToRemove] = board[rowToRemove - 1][colToRemove];
 }
 
-function gameOver() {
-    let warning = confirm("Game over! Continue?");
-
-    if (warning) {
+const gameOver = async () => {
+    const willContinue = await confirm("Game over! Continue?");
+    if (willContinue) {
         resetGame();
+    } else {
+        canMove = false;
+        speed = 0;
     }
+
 }
 
-function resetGame() {
+const resetGame = () => {
     speed = 500;
     dropStart = Date.now();
     score = 0;
-
     board = [];
-    for (let currentRow = 0; currentRow < ROW; currentRow++) {
+
+    for (let currentRow = 0; currentRow < rowsCount; currentRow++) {
         board[currentRow] = [];
-        for(let currentCol = 0; currentCol < COL; currentCol++) {
+        for(let currentCol = 0; currentCol < columnsCount; currentCol++) {
             board[currentRow][currentCol] = defaultColor;
         }
     }
