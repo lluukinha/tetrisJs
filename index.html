@@ -11,64 +11,56 @@
             color: #FFFFFF;
         }
 
-        #tetris {
-            display:block;
+        #score #speed {
+            display: inline-block;
         }
 
-        .game {
-            width: 1270px;
-            height: 790px;
-            padding-left: 10px;
-            display: flex;
-            padding-top: 10px;
-        }
-
-        .sidebar {
-            margin-left: 5px;
-            width: 340px;
-            border: 1px dashed white;
-            height: 757px;
+        div {
             font-size: 25px;
             font-weight: bold;
             font-family: monospace;
             text-align: center;
-            padding: 10px;
         }
 
-        .sidebar-content {
+        canvas {
+            display:block;
+            margin: 0 auto;
+        }
+
+        #game {
+            margin: 0 auto;
+            background-color: blue;
+            background-image: url('bg.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center top;
+            width: 1280px;
+            height: 800px;
             display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-            border: 1px solid white;
-            padding: 5px;
+            align-items: center;
         }
 
-        .sidebar-content > .title {
-            background-color: black;
+        .side {
+            width: 400px;
         }
 
-        .sidebar-content > .title, .sidebar-content > .sidebar-value {
-            padding: 5px 0px;
+        #tetris {
+            border: 2px dashed white;
         }
     </style>
 
 </head>
 <body>
-    <div class="game">
-        <canvas id="tetris" width="880" height="780"></canvas>
-        <div class="sidebar">
-            <div class="sidebar-content">
-                <span class="title">SCORE</span>
-                <span class="sidebar-value" id="score"></span>
-            </div>
-            <div class="sidebar-content">
-                <span class="title">SPEED</span>
-                <span class="sidebar-value" id="speed"></span>
-            </div>
-
-            <div class="best-score">
-                Best: <span>0</span> <i>(lucas)</i>
-            </div>
+    <div id="game">
+        <div class="left side"></div>
+        <canvas id="tetris" width="400" height="760"></canvas>
+        <div class="right side">
+            <p>
+                Score: <span id="score"></span>
+            </p>
+            <p>
+                Speed: <span id="speed"></span>
+            </p>
         </div>
     </div>
     <script src="piece.js"></script>
