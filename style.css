@@ -5,6 +5,10 @@
     src: local('Deckris'), url('./ConnectionBold-ER1g.otf') format('truetype');
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     background-color: #333333;
     color: #FFFFFF;
@@ -113,6 +117,35 @@ button:hover {
     cursor: pointer;
 }
 
-#start-button {
+#startBtn {
     margin-top: 150px;
+}
+
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.purple {
+    color: purple;
+}
+
+.cyan {
+    color: cyan;
+}
+
+.orange {
+    color: orange;
 }

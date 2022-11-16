@@ -1,0 +1,22 @@
+{
+  "name": "tetrisjs",
+  "version": "1.0.0",
+  "description": "deckris",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lluukinha/tetrisJs.git"
+  },
+  "author": "lluukinha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lluukinha/tetrisJs/issues"
+  },
+  "homepage": "https://github.com/lluukinha/tetrisJs#readme",
+  "devDependencies": {
+    "electron": "^21.2.3"
+  }
+}

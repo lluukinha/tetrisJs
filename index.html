@@ -3,50 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./style.css" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./style.css" hash="sha256-9PK+x51HIBJTF8W3h1GfrMo58ngBW77+9GoJi1XM6sw=" />
     <title>Deckris</title>
 </head>
 
 <body>
     <div id="home" class="full-screen with-bg">
         <div class="logo">
-            <span style="color: red">D</span>
-            <span style="color: green">e</span>
-            <span style="color: yellow">c</span>
-            <span style="color: blue">k</span>
-            <span style="color: purple">r</span>
-            <span style="color: cyan">i</span>
-            <span style="color: orange">s</span>
+            <span class="red">D</span>
+            <span class="green">e</span>
+            <span class="yellow">c</span>
+            <span class="blue">k</span>
+            <span class="purple">r</span>
+            <span class="cyan">i</span>
+            <span class="orange">s</span>
         </div>
-        <button
-            id="start-button"
-            class="semi-transparent-button"
-            onclick="startGame()"
-        >
+        <button id="startBtn" class="semi-transparent-button">
             START
         </button>
     </div>
     <div id="game-over" class="full-screen hidden">
         <h1>Game Over</h1>
         <h2>Score: <span class="score"></span></h2>
-        <button onclick="resetGame()">Play again</button>
-        <button style="margin-top: 20px;" onclick="quitGame()">Quit</button>
+        <button id="playAgainBtn">Play again</button>
+        <button id="quitBtn" >Quit</button>
     </div>
     <div id="game" class="with-bg">
         <div class="left side"></div>
         <canvas id="tetris" width="400" height="760"></canvas>
         <div class="right side">
-            <div class="square">
-                <img src="" id="next-piece" />
-            </div>
-            <p>
-                Score: <span class="score"></span>
-            </p>
-            <p>
-                Speed: <span id="speed"></span>
-            </p>
+            <div class="square"><img src="" id="next-piece" /></div>
+            <p>Score: <span class="score"></span></p>
+            <p>Speed: <span id="speed"></span></p>
         </div>
     </div>
     <script src="piece.js"></script>
