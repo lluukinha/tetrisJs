@@ -17,7 +17,7 @@ let score = 0;
 let board = [];
 for (let currentRow = 0; currentRow < ROW; currentRow++) {
     board[currentRow] = [];
-    for(let currentCol = 0; currentCol < COL; currentCol++) {
+    for (let currentCol = 0; currentCol < COL; currentCol++) {
         board[currentRow][currentCol] = defaultColor;
     }
 }
@@ -39,9 +39,3 @@ drawNext();
 drop();
 
 document.addEventListener("keydown", CONTROL);
-
-function drawNext() {
-    nextPiece = randomPiece();
-    const element = document.getElementById('next-piece');
-    element.src=  `images/${nextPiece.image}`;
-}
