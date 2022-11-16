@@ -7,8 +7,37 @@ const drawBoard = () => {
     }
 
     scoreElement.innerHTML = score;
-    speedElement.innerHTML = speed;
+    speedElement.innerHTML = readableSpeed();
 }
+
+const readableSpeed = () => {
+    const readable = {
+        '500': '1',
+        '480': '2',
+        '460': '3',
+        '440': '4',
+        '420': '5',
+        '400': '6',
+        '380': '7',
+        '360': '8',
+        '340': '9',
+        '320': '10',
+        '300': '11',
+        '280': '12',
+        '260': '13',
+        '240': '14',
+        '220': '15',
+        '200': '16',
+        '180': '17',
+        '160': '18',
+        '140': '19',
+        '120': '20',
+        '100': '21',
+        '80': '22',
+        '60': 'FULL SPEED',
+    }
+    return readable[speed];
+};
 
 const drawSquare = (y, x, color) => {
     ctx.fillStyle = color;
@@ -71,8 +100,8 @@ const updateRowAndScore = (row) => {
         board[0][currentCol] = defaultColor;
     }
 
-    score += 10;
-    if (speed > 100) speed -= 20;
+    score += 100;
+    if (speed > 60) speed -= 20;
 
     canMove = true;
 }

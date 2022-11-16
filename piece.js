@@ -89,7 +89,6 @@ class Piece {
     }
 
     lock() {
-        canMove = false;
         for (let currentRow = 0; currentRow < this.activePiece.length; currentRow++) {
             for (let currentCol = 0; currentCol < this.activePiece.length; currentCol++) {
                 if (!this.activePiece[currentRow][currentCol]) continue;
@@ -115,6 +114,5 @@ class Piece {
         }
 
         drawBoard();
-        canMove = true;
     }
 }
