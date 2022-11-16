@@ -71,7 +71,7 @@ class Piece {
 
         this.lock();
         piece = nextPiece;
-        drawNextImage();
+        drawNext();
     }
 
     collision(x, y, futurePiece) {
@@ -96,7 +96,7 @@ class Piece {
 
                 if (this.y + currentRow < 0) {
                     gameOver();
-                    break;
+                    return;
                 }
 
                 board[this.y + currentRow][this.x + currentCol] = this.color;

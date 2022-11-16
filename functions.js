@@ -26,7 +26,7 @@ function drop() {
     const now = Date.now();
     const delta = now - dropStart;
 
-    if (delta > speed) {
+    if (delta > speed && canMove) {
         piece.moveDown();
         dropStart = Date.now();
     }
@@ -84,11 +84,17 @@ function removeRow(rowToRemove, colToRemove) {
 function gameOver() {
     const gameOverEl = document.getElementById('game-over');
     gameOverEl.classList.add('show-game-over');
+    canMove = false;
+}
+
+function removeGameOver() {
+    const gameOverEl = document.getElementById('game-over');
+    gameOverEl.classList.remove('show-game-over');
 }
 
 function resetGame() {
-    const gameOverEl = document.getElementById('game-over');
-    gameOverEl.classList.remove('show-game-over');
+    removeGameOver();
+    canMove = true;
     speed = 500;
     dropStart = Date.now();
     score = 0;
@@ -102,5 +108,6 @@ function resetGame() {
     }
 
     piece = randomPiece();
+    drawNext();
     drawBoard();
 }

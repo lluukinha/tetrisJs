@@ -35,12 +35,12 @@ const PIECES = [
 ];
 
 let piece = randomPiece();
-drawNextImage();
+drawNext();
 drop();
 
 document.addEventListener("keydown", CONTROL);
 
-function drawNextImage() {
+function drawNext() {
     nextPiece = randomPiece();
     const element = document.getElementById('next-piece');
     element.src=  `images/${nextPiece.image}`;
