@@ -47,10 +47,41 @@
         #tetris {
             border: 2px dashed white;
         }
+
+        #game-over {
+            width: 1280px;
+            height: 800px;
+            background-color: rgb(0 0 0 / 50%);
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .show-game-over {
+            display: block !important;
+        }
+
+        .play-again-btn {
+            width: 200px;
+            height: 60px;
+        }
     </style>
 
 </head>
 <body>
+    <div id="game-over">
+        <h1>Game Over</h1>
+        <h2>Score: 0</h2>
+        <h2>Best score: 0 (lucas)</h2>
+        <button onclick="resetGame()" class="play-again-btn">Play again</button>
+    </div>
     <div id="game">
         <div class="left side"></div>
         <canvas id="tetris" width="400" height="760"></canvas>

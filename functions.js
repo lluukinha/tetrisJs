@@ -96,14 +96,13 @@ function removeRow(rowToRemove, colToRemove) {
 }
 
 function gameOver() {
-    let warning = confirm("Game over! Continue?");
-
-    if (warning) {
-        resetGame();
-    }
+    const gameOverEl = document.getElementById('game-over');
+    gameOverEl.classList.add('show-game-over');
 }
 
 function resetGame() {
+    const gameOverEl = document.getElementById('game-over');
+    gameOverEl.classList.remove('show-game-over');
     speed = 500;
     dropStart = Date.now();
     score = 0;
