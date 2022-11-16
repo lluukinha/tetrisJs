@@ -25,17 +25,23 @@ for (let currentRow = 0; currentRow < ROW; currentRow++) {
 drawBoard();
 
 const PIECES = [
-    [Z,'red'],
-    [S,'green'],
-    [T,'yellow'],
-    [O,'blue'],
-    [L,'purple'],
-    [I,'cyan'],
-    [J,'orange'],
+    [Z, 'red', 'z.png'],
+    [S, 'green', 's.png'],
+    [T, 'yellow', 't.png'],
+    [O, 'blue', 'o.png'],
+    [L, 'purple', 'l.png'],
+    [I, 'cyan', 'i.png'],
+    [J, 'orange', 'j.png'],
 ];
 
 let piece = randomPiece();
-
+drawNextImage();
 drop();
 
 document.addEventListener("keydown", CONTROL);
+
+function drawNextImage() {
+    nextPiece = randomPiece();
+    const element = document.getElementById('next-piece');
+    element.src=  `images/${nextPiece.image}`;
+}

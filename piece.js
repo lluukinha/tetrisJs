@@ -1,7 +1,8 @@
 class Piece {
-    constructor(piece, color) {
+    constructor(piece, color, image) {
         this.piece = piece;
         this.color = color;
+        this.image = image;
 
         this.pieceN = 0;
         this.activePiece = this.piece[this.pieceN];
@@ -12,7 +13,7 @@ class Piece {
 
     fill(color) {
         for (let currentRow = 0; currentRow < this.activePiece.length; currentRow++) {
-            for(let currentCol = 0; currentCol < this.activePiece.length; currentCol++) {
+            for (let currentCol = 0; currentCol < this.activePiece.length; currentCol++) {
                 if (this.activePiece[currentRow][currentCol]) {
                     drawSquare(this.y + currentRow, this.x + currentCol, color);
                 }
@@ -29,31 +30,26 @@ class Piece {
     }
 
     moveLeft() {
-        if (!this.collision(-1, 0, this.activePiece)) {
-            this.unDraw();
-            this.x--;
-            this.draw();
-        }
+        if (this.collision(-1, 0, this.activePiece)) return;
+        this.unDraw();
+        this.x--;
+        this.draw();
     }
 
     moveRight() {
-        if (!this.collision(1, 0, this.activePiece)) {
-            this.unDraw();
-            this.x++;
-            this.draw();
-        }
+        if (this.collision(1, 0, this.activePiece)) return;
+        this.unDraw();
+        this.x++;
+        this.draw();
     }
 
     rotate() {
-        let nextPattern = this.piece[(this.pieceN + 1) % this.piece.length];
+        const nextPattern = this.piece[(this.pieceN + 1) % this.piece.length];
         let kick = 0;
 
         if (this.collision(0, 0, nextPattern)) {
             kick = 1;
-
-            if (this.x > COL / 2) {
-                kick = -1;
-            }
+            if (this.x > COL / 2) kick = -1;
         }
 
         if (!this.collision(kick, 0, nextPattern)) {
@@ -74,30 +70,19 @@ class Piece {
         }
 
         this.lock();
-        piece = randomPiece();
+        piece = nextPiece;
+        drawNextImage();
     }
 
     collision(x, y, futurePiece) {
         for (let currentRow = 0; currentRow < futurePiece.length; currentRow++) {
             for (let currentCol = 0; currentCol < futurePiece.length; currentCol++) {
-                if (!futurePiece[currentRow][currentCol]) {
-                    continue;
-                }
-
-                let newX = this.x + currentCol + x;
-                let newY = this.y + currentRow + y;
-
-                if (newX < 0 || newX >= COL || newY >= ROW) {
-                    return true;
-                }
-
-                if (newY < 0) {
-                    continue;
-                }
-
-                if (board[newY][newX] != defaultColor) {
-                    return true;
-                }
+                if (!futurePiece[currentRow][currentCol]) continue;
+                const newX = this.x + currentCol + x;
+                const newY = this.y + currentRow + y;
+                if (newX < 0 || newX >= COL || newY >= ROW) return true;
+                if (newY < 0) continue;
+                if (board[newY][newX] != defaultColor) return true;
             }
         }
         return false;
@@ -107,9 +92,7 @@ class Piece {
         canMove = false;
         for (let currentRow = 0; currentRow < this.activePiece.length; currentRow++) {
             for (let currentCol = 0; currentCol < this.activePiece.length; currentCol++) {
-                if (!this.activePiece[currentRow][currentCol]) {
-                    continue;
-                }
+                if (!this.activePiece[currentRow][currentCol]) continue;
 
                 if (this.y + currentRow < 0) {
                     gameOver();
@@ -121,7 +104,6 @@ class Piece {
         }
 
         for (let currentRow = 0; currentRow < ROW; currentRow++) {
-
             let isRowFull = true;
 
             for (let currentCol = 0; currentCol < COL; currentCol++) {
@@ -129,13 +111,10 @@ class Piece {
                 isRowFull = isRowFull && (currentSquareColor !== defaultColor);
             }
 
-            if (isRowFull) {
-                updateRowAndScore(currentRow);
-            }
+            if (isRowFull) updateRowAndScore(currentRow);
         }
 
         drawBoard();
         canMove = true;
     }
-
 }

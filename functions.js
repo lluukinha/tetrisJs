@@ -13,20 +13,13 @@ function drawBoard() {
 function drawSquare(y, x, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
-
-    if (color == defaultColor) {
-        ctx.strokeStyle = defaultBorder;
-    }
-
+    if (color == defaultColor) ctx.strokeStyle = defaultBorder;
     ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
 function randomPiece() {
     const randomPieceNumber = Math.floor(Math.random() * PIECES.length);
-    return new Piece(
-        PIECES[randomPieceNumber][0],
-        PIECES[randomPieceNumber][1],
-    );
+    return new Piece(...PIECES[randomPieceNumber]);
 }
 
 function drop() {
@@ -42,11 +35,7 @@ function drop() {
 }
 
 function CONTROL(event) {
-
-    if (!canMove) {
-        return false;
-    }
-
+    if (!canMove) return false;
     const moveFunctions = {
         ArrowLeft() {
             piece.moveLeft();
@@ -83,10 +72,7 @@ function updateRowAndScore(row) {
     }
 
     score += 10;
-
-    if (speed > 100) {
-        speed -= 20;
-    }
+    if (speed > 100) speed -= 20;
 
     canMove = true;
 }
