@@ -1,3 +1,32 @@
+const startGame = () => {
+    homeElement.classList.add('hidden');
+
+    canMove = true;
+    speed = 500;
+    dropStart = Date.now();
+    score = 0;
+    board = [];
+
+    for (let currentRow = 0; currentRow < ROW; currentRow++) {
+        board[currentRow] = [];
+        for (let currentCol = 0; currentCol < COL; currentCol++) {
+            board[currentRow][currentCol] = defaultColor;
+        }
+    }
+
+    drawBoard();
+    drawNext();
+    drop();
+    document.addEventListener("keydown", CONTROL);
+    canMove = true;
+}
+
+const quitGame = () => {
+    document.removeEventListener("keydown", CONTROL);
+    gameOverElement.classList.add("hidden");
+    homeElement.classList.remove("hidden");
+}
+
 const drawBoard = () => {
     for (let currentRow = 0; currentRow < ROW; currentRow++) {
         for(let currentCol = 0; currentCol < COL; currentCol++) {
@@ -6,13 +35,13 @@ const drawBoard = () => {
         }
     }
 
-    scoreElement.innerHTML = score;
+    for (let scoreElement of scoreElements) scoreElement.innerHTML = score;
     speedElement.innerHTML = readableSpeed();
 }
 
 const readableSpeed = () => {
     const readable = {
-        '500': '1',
+        '500': 'SLOW',
         '480': '2',
         '460': '3',
         '440': '4',
@@ -40,9 +69,10 @@ const readableSpeed = () => {
 };
 
 const drawSquare = (y, x, color) => {
+    if (ctx.color == color) return;
     ctx.fillStyle = color;
     ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
-    if (color == defaultColor) ctx.strokeStyle = defaultBorder;
+    ctx.strokeStyle = defaultBorder;
     ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
@@ -111,14 +141,12 @@ const removeRow = (rowToRemove, colToRemove) => {
 }
 
 const gameOver = () => {
-    const gameOverEl = document.getElementById('game-over');
-    gameOverEl.classList.add('show-game-over');
+    gameOverElement.classList.remove('hidden');
     canMove = false;
 }
 
 const removeGameOver = () => {
-    const gameOverEl = document.getElementById('game-over');
-    gameOverEl.classList.remove('show-game-over');
+    gameOverElement.classList.add('hidden');
 }
 
 const resetGame = () => {

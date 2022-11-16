@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'Dekris';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Deckris'), url('./ConnectionBold-ER1g.otf') format('truetype');
+}
+
+body {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+#score #speed {
+    display: inline-block;
+}
+
+div {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#game {
+    margin: 0 auto;
+    width: 1280px;
+    height: 800px;
+    display: flex;
+    align-items: center;
+}
+
+.with-bg {
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+}
+
+.side {
+    width: 400px;
+}
+
+#tetris {
+    border: 2px dashed white;
+}
+
+.full-screen {
+    width: 1280px;
+    height: 800px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#game-over {
+    background-color: rgb(0 0 0 / 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home {
+    display: flex;
+    background-color: black;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.logo {
+    font-family: 'Dekris', serif;
+    font-size: 160px;
+    text-shadow: 3px 4px 4px #a3a3a3;
+}
+
+button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    background: #fff;
+    /* fallback color for old browsers */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    font-size: 55px;
+    padding: 15px 0px;
+    width: 400px;
+}
+
+button .active {
+    background: #FFF;
+}
+
+button:hover {
+    background: #FFF;
+    cursor: pointer;
+}
+
+#start-button {
+    margin-top: 150px;
+}

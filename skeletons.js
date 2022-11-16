@@ -148,3 +148,13 @@ const Z = [
         [1, 0, 0],
     ],
 ];
+
+const PIECES = [
+    [Z, 'red', 'z.png'],
+    [S, 'green', 's.png'],
+    [T, 'yellow', 't.png'],
+    [O, 'blue', 'o.png'],
+    [L, 'purple', 'l.png'],
+    [I, 'cyan', 'i.png'],
+    [J, 'orange', 'j.png'],
+];
