@@ -67,19 +67,16 @@ const drop = () => {
 const moveLeft = () => {
     if (!canMove) return;
     piece.moveLeft();
-    dropStart = Date.now();
 };
 
 const moveRight = () => {
     if (!canMove) return;
     piece.moveRight();
-    dropStart = Date.now();
 };
 
 const rotatePiece = () => {
     if (!canMove) return;
     piece.rotate();
-    dropStart = Date.now();
 };
 
 const moveUp = () => {
@@ -109,6 +106,8 @@ const clickMethod = () => {
         quitGame();
     } else if (isHomeScreen) {
         startGame();
+    } else if (!isHomeScreen && !isGameOver && canMove) {
+        rotatePiece();
     }
 }
 

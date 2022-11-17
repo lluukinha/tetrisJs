@@ -63,15 +63,15 @@ class Piece {
 
     moveDown() {
         if (!this.collision(0, 1, this.activePiece)) {
+            dropStart = Date.now();
             this.unDraw();
             this.y++;
             this.draw();
-            return;
+        } else {
+            this.lock();
+            piece = nextPiece;
+            selectNextPiece();
         }
-
-        this.lock();
-        piece = nextPiece;
-        selectNextPiece();
     }
 
     collision(x, y, futurePiece) {
@@ -103,14 +103,8 @@ class Piece {
         }
 
         for (let currentRow = 0; currentRow < ROW; currentRow++) {
-            let isRowFull = true;
-
-            for (let currentCol = 0; currentCol < COL; currentCol++) {
-                const currentSquareColor = board[currentRow][currentCol];
-                isRowFull = isRowFull && (currentSquareColor !== defaultColor);
-            }
-
-            if (isRowFull) updateRowAndScore(currentRow);
+            const allColumnsAreFilled = board[currentRow].every((colColor) => colColor != defaultColor);
+            if (allColumnsAreFilled) updateRowAndScore(currentRow);
         }
 
         drawBoard();
