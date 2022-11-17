@@ -6,8 +6,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "portable": "electron-builder --ia32 --x64 -w portable"
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
