@@ -4,7 +4,9 @@
   "description": "deckris",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,12 @@
   },
   "homepage": "https://github.com/lluukinha/tetrisJs#readme",
   "devDependencies": {
-    "electron": "^21.2.3"
+    "electron": "^21.2.3",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "your.id",
+    "productName": "Deckris",
+    "target": "NSIS"
   }
 }

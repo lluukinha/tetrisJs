@@ -5,12 +5,11 @@ const speedElement = document.getElementById("speed");
 const homeElement = document.getElementById('home');
 const gameOverElement = document.getElementById('game-over');
 
-
 document.getElementById("startBtn").addEventListener('click', startGame);
 document.getElementById("playAgainBtn").addEventListener('click', resetGame);
 document.getElementById("quitBtn").addEventListener('click', quitGame);
 
-
+// app.quit();
 
 const ROW = 19;
 const COL = 10;

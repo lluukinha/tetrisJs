@@ -12,6 +12,7 @@
 body {
     background-color: #333333;
     color: #FFFFFF;
+    margin: 0;
 }
 
 #score #speed {
@@ -32,8 +33,6 @@ canvas {
 
 #game {
     margin: 0 auto;
-    width: 1280px;
-    height: 800px;
     display: flex;
     align-items: center;
 }
@@ -51,16 +50,23 @@ canvas {
 
 #tetris {
     border: 2px dashed white;
+    max-width: 400px !important;
+    max-height: 760px !important;
 }
 
-.full-screen {
-    width: 1280px;
-    height: 800px;
+.float {
     position: absolute;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+.full-screen {
+    width: 1280px;
+    height: 800px;
+    max-width: 1280px;
+    max-height: 800px;
 }
 
 #game-over {

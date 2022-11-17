@@ -36,37 +36,8 @@ const drawBoard = () => {
     }
 
     for (let scoreElement of scoreElements) scoreElement.innerHTML = score;
-    speedElement.innerHTML = readableSpeed();
+    speedElement.innerHTML = readableSpeed[speed]
 }
-
-const readableSpeed = () => {
-    const readable = {
-        '500': 'SLOW',
-        '480': '2',
-        '460': '3',
-        '440': '4',
-        '420': '5',
-        '400': '6',
-        '380': '7',
-        '360': '8',
-        '340': '9',
-        '320': '10',
-        '300': '11',
-        '280': '12',
-        '260': '13',
-        '240': '14',
-        '220': '15',
-        '200': '16',
-        '180': '17',
-        '160': '18',
-        '140': '19',
-        '120': '20',
-        '100': '21',
-        '80': '22',
-        '60': 'FULL SPEED',
-    }
-    return readable[speed];
-};
 
 const drawSquare = (y, x, color) => {
     if (ctx.color == color) return;
@@ -114,7 +85,10 @@ const CONTROL = (event) => {
     };
 
     const movePiece = moveFunctions[event.code];
-    movePiece();
+    if (!!movePiece) {
+        event.preventDefault();
+        movePiece();
+    }
 }
 
 const updateRowAndScore = (row) => {
