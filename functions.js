@@ -1,4 +1,6 @@
 const startGame = () => {
+    isHomeScreen = false;
+    isGameOver = false;
     homeElement.classList.add('hidden');
 
     canMove = true;
@@ -17,14 +19,14 @@ const startGame = () => {
     drawBoard();
     drawNext();
     drop();
-    document.addEventListener("keydown", CONTROL);
     canMove = true;
 }
 
 const quitGame = () => {
-    document.removeEventListener("keydown", CONTROL);
     gameOverElement.classList.add("hidden");
     homeElement.classList.remove("hidden");
+    isHomeScreen = true;
+    isGameOver = false;
 }
 
 const drawBoard = () => {
@@ -64,30 +66,72 @@ const drop = () => {
     requestAnimationFrame(drop);
 }
 
+const moveLeft = () => {
+    if (!canMove) return;
+    piece.moveLeft();
+    dropStart = Date.now();
+};
+
+const moveRight = () => {
+    if (!canMove) return;
+    piece.moveRight();
+    dropStart = Date.now();
+};
+
+const rotatePiece = () => {
+    if (!canMove) return;
+    piece.rotate();
+    dropStart = Date.now();
+};
+
+const moveUp = () => {
+    if (canMove && !isGameOver && !isHomeScreen) rotatePiece();
+    if (isGameOver) changeGameOverButtonSelection();
+}
+
+const changeGameOverButtonSelection = () => {
+    if (quitBtn.classList.contains('active')) {
+        quitBtn.classList.remove('active');
+        playAgainBtn.classList.add('active');
+    } else {
+        playAgainBtn.classList.remove('active');
+        quitBtn.classList.add('active');
+    }
+}
+
+const moveDown = () => {
+    if (canMove && !isGameOver && !isHomeScreen) piece.moveDown();
+    if (isGameOver) changeGameOverButtonSelection();
+};
+
+const clickMethod = () => {
+    if (isGameOver && playAgainBtn.classList.contains('active')) {
+        resetGame();
+    } else if (isGameOver && quitBtn.classList.contains('active')) {
+        quitGame();
+    } else if (isHomeScreen) {
+        startGame();
+    }
+}
+
 const CONTROL = (event) => {
-    if (!canMove) return false;
     const moveFunctions = {
-        ArrowLeft() {
-            piece.moveLeft();
-            dropStart = Date.now();
-        },
-        ArrowRight() {
-            piece.moveRight();
-            dropStart = Date.now();
-        },
-        ArrowUp() {
-            piece.rotate();
-            dropStart = Date.now();
-        },
-        ArrowDown() {
-            piece.moveDown();
-        }
+        ArrowLeft: moveLeft,
+        KeyA: moveLeft,
+        ArrowRight: moveRight,
+        KeyD: moveRight,
+        ArrowUp: moveUp,
+        Space: rotatePiece,
+        KeyW: rotatePiece,
+        ArrowDown: moveDown,
+        KeyS: moveDown,
+        Enter: clickMethod
     };
 
     const movePiece = moveFunctions[event.code];
     if (!!movePiece) {
         event.preventDefault();
-        movePiece();
+        movePiece()
     }
 }
 
@@ -117,6 +161,7 @@ const removeRow = (rowToRemove, colToRemove) => {
 const gameOver = () => {
     gameOverElement.classList.remove('hidden');
     canMove = false;
+    isGameOver = true;
 }
 
 const removeGameOver = () => {
@@ -124,6 +169,8 @@ const removeGameOver = () => {
 }
 
 const resetGame = () => {
+    isGameOver = false;
+    isHomeScreen = false;
     removeGameOver();
     canMove = true;
     speed = 500;

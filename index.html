@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <link rel="stylesheet" href="./style.css" hash="sha256-9PK+x51HIBJTF8W3h1GfrMo58ngBW77+9GoJi1XM6sw=" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Deckris</title>
 </head>
 
 <body>
+    <!-- HOME SCREEN -->
     <div id="home" class="full-screen float with-bg">
         <div class="logo">
             <span class="red">D</span>
@@ -19,16 +20,20 @@
             <span class="cyan">i</span>
             <span class="orange">s</span>
         </div>
-        <button id="startBtn" class="semi-transparent-button">
+        <button id="startBtn" class="semi-transparent-button active">
             START
         </button>
     </div>
+
+    <!-- GAME OVER SCREEN -->
     <div id="game-over" class="full-screen float hidden">
         <h1>Game Over</h1>
         <h2>Score: <span class="score"></span></h2>
-        <button id="playAgainBtn">Play again</button>
-        <button id="quitBtn" >Quit</button>
+        <button id="playAgainBtn" class="active">Play again</button>
+        <button id="quitBtn">Quit</button>
     </div>
+
+    <!-- GAME SCREEN -->
     <div id="game" class="full-screen with-bg">
         <div class="left side"></div>
         <canvas id="tetris" width="400" height="760"></canvas>
@@ -38,6 +43,7 @@
             <p>Speed: <span id="speed"></span></p>
         </div>
     </div>
+
     <script src="piece.js"></script>
     <script src="skeletons.js"></script>
     <script src="functions.js"></script>

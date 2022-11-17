@@ -95,6 +95,10 @@ canvas {
     text-shadow: 3px 4px 4px #a3a3a3;
 }
 
+#quitBtn {
+    margin-top: 10px;
+}
+
 button {
     display: block;
     box-sizing: border-box;
@@ -102,20 +106,20 @@ button {
     padding: 8px;
     background: #fff;
     /* fallback color for old browsers */
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 8px;
     color: #333;
     text-align: center;
     text-decoration: none;
     letter-spacing: 1px;
-    transition: all 0.3s ease-out;
+    transition: all 0.2s ease-out;
     font-size: 55px;
     padding: 15px 0px;
     width: 400px;
 }
 
-button .active {
-    background: #FFF;
+button.active {
+    background: #FFF !important;
 }
 
 button:hover {

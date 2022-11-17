@@ -5,21 +5,26 @@ const speedElement = document.getElementById("speed");
 const homeElement = document.getElementById('home');
 const gameOverElement = document.getElementById('game-over');
 
-document.getElementById("startBtn").addEventListener('click', startGame);
-document.getElementById("playAgainBtn").addEventListener('click', resetGame);
-document.getElementById("quitBtn").addEventListener('click', quitGame);
-
-// app.quit();
-
 const ROW = 19;
 const COL = 10;
 const SQ = 40;
 const defaultColor = "#111111";
 const defaultBorder = "rgba(255,255,255,0.1)";
 
+let isGameOver = false;
+let isHomeScreen = true;
 let canMove = true;
 let speed = 500;
 let dropStart = Date.now();
 let score = 0;
 let board = [];
 let piece = randomPiece();
+
+const startBtn = document.getElementById("startBtn");
+const playAgainBtn = document.getElementById("playAgainBtn");
+const quitBtn = document.getElementById("quitBtn");
+
+startBtn.addEventListener('click', startGame);
+playAgainBtn.addEventListener('click', resetGame);
+quitBtn.addEventListener('click', quitGame);
+document.addEventListener("keydown", CONTROL);
