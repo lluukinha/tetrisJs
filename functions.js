@@ -17,7 +17,7 @@ const startGame = () => {
     }
 
     drawBoard();
-    drawNext();
+    selectNextPiece();
     drop();
     canMove = true;
 }
@@ -42,10 +42,8 @@ const drawBoard = () => {
 }
 
 const drawSquare = (y, x, color) => {
-    if (ctx.color == color) return;
     ctx.fillStyle = color;
     ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
-    ctx.strokeStyle = defaultBorder;
     ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
@@ -137,25 +135,15 @@ const CONTROL = (event) => {
 
 const updateRowAndScore = (row) => {
     canMove = false;
-
-    for (let y = row; y > 1; y--) {
-        for (let currentCol = 0; currentCol < COL; currentCol++) {
-            removeRow(y, currentCol);
-        }
-    }
-
-    for (let currentCol = 0; currentCol < COL; currentCol++) {
-        board[0][currentCol] = defaultColor;
-    }
-
+    for (let y = row; y > 1; y--) removeRow(y);
+    for (let x = 0; x < COL; x++) board[0][x] = defaultColor;
     score += 100;
-    if (speed > 60) speed -= 20;
-
+    if (speed > 80) speed -= 20;
     canMove = true;
 }
 
-const removeRow = (rowToRemove, colToRemove) => {
-    board[rowToRemove][colToRemove] = board[rowToRemove - 1][colToRemove];
+const removeRow = (rowIndex) => {
+    board[rowIndex] = board[rowIndex].map((_, index) => board[rowIndex - 1][index]);
 }
 
 const gameOver = () => {
@@ -186,11 +174,11 @@ const resetGame = () => {
     }
 
     piece = randomPiece();
-    drawNext();
+    selectNextPiece();
     drawBoard();
 }
 
-const drawNext = () => {
+const selectNextPiece = () => {
     nextPiece = randomPiece();
     const element = document.getElementById('next-piece');
     element.src=  `images/${nextPiece.image}`;

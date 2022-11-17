@@ -71,7 +71,7 @@ class Piece {
 
         this.lock();
         piece = nextPiece;
-        drawNext();
+        selectNextPiece();
     }
 
     collision(x, y, futurePiece) {

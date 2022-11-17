@@ -8,8 +8,7 @@ const gameOverElement = document.getElementById('game-over');
 const ROW = 19;
 const COL = 10;
 const SQ = 40;
-const defaultColor = "#111111";
-const defaultBorder = "rgba(255,255,255,0.1)";
+const defaultColor = "#111222";
 
 let isGameOver = false;
 let isHomeScreen = true;
