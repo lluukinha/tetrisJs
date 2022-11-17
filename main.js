@@ -6,7 +6,8 @@ const createWindow = () => {
         height: 800,
         minHeight: 800,
         minWidth: 1280,
-        fullscreen: true
+        fullscreen: true,
+        icon: __dirname + '/build/icon.ico',
     });
     win.setMenuBarVisibility(false);
     win.loadFile('index.html');

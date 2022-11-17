@@ -151,7 +151,7 @@ const Z = [
 
 const PIECES = [
     [Z, 'red', 'z.png'],
-    [S, 'green', 's.png'],
+    [S, 'pink', 's.png'],
     [T, 'yellow', 't.png'],
     [O, 'blue', 'o.png'],
     [L, 'purple', 'l.png'],

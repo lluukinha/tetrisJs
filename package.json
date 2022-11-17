@@ -1,12 +1,13 @@
 {
-  "name": "tetrisjs",
+  "name": "deckrisjs",
   "version": "1.0.0",
   "description": "deckris",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "portable": "electron-builder --ia32 --x64 -w portable"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,7 @@
     "electron-builder": "^23.6.0"
   },
   "build": {
-    "appId": "your.id",
-    "productName": "Deckris",
-    "target": "NSIS"
+    "appId": "com.electron.deckrisjs",
+    "productName": "Deckris"
   }
 }
