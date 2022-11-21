@@ -180,6 +180,5 @@ const readableSpeed = {
     '160': '18',
     '140': '19',
     '120': '20',
-    '100': '21',
-    '80': 'FULL SPEED'
+    '100': 'FULL SPEED'
 };

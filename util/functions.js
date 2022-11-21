@@ -125,10 +125,10 @@ const CONTROL = (event) => {
         Enter: clickMethod
     };
 
-    const movePiece = moveFunctions[event.code];
-    if (!!movePiece) {
+    const moveMethod = moveFunctions[event.code];
+    if (!!moveMethod) {
         event.preventDefault();
-        movePiece()
+        moveMethod();
     }
 }
 
@@ -137,7 +137,7 @@ const updateRowAndScore = (row) => {
     for (let y = row; y > 1; y--) removeRow(y);
     for (let x = 0; x < COL; x++) board[0][x] = defaultColor;
     score += 100;
-    if (speed > 80) speed -= 20;
+    if (speed > 100) speed -= 20;
     canMove = true;
 }
 
